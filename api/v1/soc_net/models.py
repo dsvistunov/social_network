@@ -9,3 +9,12 @@ class Post(models.Model):
 	image = models.ImageField(blank=True, null=True)
 	public = models.DateTimeField(auto_now_add=True)
 	modified = models.DateTimeField(auto_now=True)
+
+
+class Like(models.Model):
+	user = models.ForeignKey(User)
+	post = models.ForeignKey(Post)
+
+class Dislike(models.Model):
+	user = models.ForeignKey(User)
+	post = models.ForeignKey(Post)
