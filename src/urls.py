@@ -18,6 +18,7 @@ from django.contrib import admin
 from rest_framework_jwt.views import refresh_jwt_token
 from api.v1.soc_net import urls as api_urls
 
+
 urlpatterns = [
     url(r'^api/', include(api_urls)),
 	url(r'^rest-auth/', include('rest_auth.urls')),

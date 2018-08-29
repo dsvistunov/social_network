@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from api.v1.soc_net.models import Post, Like, Dislike
+from rest_auth.registration.serializers import RegisterSerializer
 
 
 class PostCreateSerializer(ModelSerializer):
@@ -51,3 +52,10 @@ class PostDislikeCreateSerializer(ModelSerializer):
 		if not created:
 			dislike.delete()
 		return dislike
+
+
+class UserRegisterSerializer(RegisterSerializer):
+
+	def save(self, request):
+		user = super(UserRegisterSerializer, self).save(request)
+		return user

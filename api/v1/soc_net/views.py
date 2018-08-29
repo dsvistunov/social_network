@@ -1,7 +1,12 @@
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from api.v1.soc_net.models import Post, Like, Dislike
-from .serializers import PostCreateSerializer, PostLikeCreateSerializer, PostDislikeCreateSerializer
+from .serializers import (
+	PostCreateSerializer, 
+	PostLikeCreateSerializer, 
+	PostDislikeCreateSerializer, 
+)
+from rest_auth.registration.views import RegisterView
 
 
 class PostCreateAPIView(CreateAPIView):
