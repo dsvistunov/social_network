@@ -14,6 +14,7 @@ class PostCreateAPIView(CreateAPIView):
 	permission_classes = (IsAuthenticated,)
 	serializer_class = PostCreateSerializer
 
+
 class PostLikeCreateAPIView(CreateAPIView):
 	model = Like
 	permission_classes = (IsAuthenticated,)

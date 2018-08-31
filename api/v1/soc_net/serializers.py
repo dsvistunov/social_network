@@ -1,3 +1,4 @@
+import clearbit
 from rest_framework.serializers import ModelSerializer
 from api.v1.soc_net.models import Post, Like, Dislike
 from rest_auth.registration.serializers import RegisterSerializer
@@ -56,6 +57,17 @@ class PostDislikeCreateSerializer(ModelSerializer):
 
 class UserRegisterSerializer(RegisterSerializer):
 
+	def populate_user_data(self, user):
+		lookup = clearbit.Enrichment.find(email=user.email, stream=True)
+		print(lookup['person'])
+		user.first_name = lookup['person']['name'].get('givenName', '')
+		user.last_name = lookup['person']['name'].get('familyName', '')
+		user.location = lookup['person'].get('location', '')
+		user.bio = lookup['person'].get('bio', '')
+		user.facebook = lookup['person']['facebook'].get('handle', '')
+		user.save()
+		return user
+
 	def save(self, request):
 		user = super(UserRegisterSerializer, self).save(request)
-		return user
+		return self.populate_user_data(user)

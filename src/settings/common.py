@@ -12,10 +12,14 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import datetime
+import clearbit
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# load env vars
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -27,7 +31,7 @@ SECRET_KEY = '1+=ynxp&oeo$)$itle=x7#@c68#f#_f66bm3=un4us5!0n99w9'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = 'soc_net.SocNetUser'
 
 # Application definition
 
@@ -153,3 +157,6 @@ SITE_ID = 1
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'api.v1.soc_net.serializers.UserRegisterSerializer'
 }
+
+# clearbit conf
+clearbit.key = os.getenv('CLEARBIT_API_KEY')
