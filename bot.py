@@ -53,13 +53,15 @@ def sign_up_user():
 			"password1": password,
 			"password2": password
 		})
-	token = response.json()['token']
-	auth_token = 'JWT %s' % token
-	number_posts = random.randint(1, max_posts_per_user)
-	for _ in range(number_posts):
-		create_post(auth_token)
-	likes_post(auth_token)
-
+	try:
+		token = response.json()['token']
+		auth_token = 'JWT %s' % token
+		number_posts = random.randint(1, max_posts_per_user)
+		for _ in range(number_posts):
+			create_post(auth_token)
+		likes_post(auth_token)
+	except KeyError:
+		print(response.content)
 
 
 def main():

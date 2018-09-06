@@ -1,8 +1,10 @@
 import clearbit
-from rest_framework.serializers import ModelSerializer
+from django.utils.translation import ugettext_lazy as _
+from rest_framework.serializers import ModelSerializer, ValidationError
 from requests.exceptions import HTTPError
 from api.v1.soc_net.models import Post, Like, Dislike
 from rest_auth.registration.serializers import RegisterSerializer
+from src.settings import hunter
 
 
 class PostCreateSerializer(ModelSerializer):
@@ -57,6 +59,13 @@ class PostDislikeCreateSerializer(ModelSerializer):
 
 
 class UserRegisterSerializer(RegisterSerializer):
+
+	def validate_email(self, email):
+		deliv_able = hunter.email_verifier(email)
+		if deliv_able['result'] == 'undeliverable':
+			raise ValidationError(
+                    _("This e-mail address is undeliverable."))
+		return super(UserRegisterSerializer, self).validate_email(email)
 
 	def populate_user_data(self, user):
 		try:

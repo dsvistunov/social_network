@@ -14,6 +14,7 @@ import os
 import datetime
 import clearbit
 from dotenv import load_dotenv
+from pyhunter import PyHunter
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -160,3 +161,6 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 
 # clearbit conf
 clearbit.key = os.getenv('CLEARBIT_API_KEY')
+
+# hunter.io conf
+hunter = PyHunter(os.getenv('HUNTER_API_KEY'))
