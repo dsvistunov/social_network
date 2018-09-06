@@ -30,7 +30,7 @@ SECRET_KEY = '1+=ynxp&oeo$)$itle=x7#@c68#f#_f66bm3=un4us5!0n99w9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver']
 AUTH_USER_MODEL = 'soc_net.SocNetUser'
 
 # Application definition
