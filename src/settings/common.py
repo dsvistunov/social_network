@@ -153,8 +153,6 @@ REST_FRAMEWORK = {
 # Enables django-rest-auth to use JWT tokens instead of regular tokens.
 REST_USE_JWT = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 SITE_ID = 1
 
 REST_AUTH_REGISTER_SERIALIZERS = {
@@ -170,3 +168,4 @@ hunter = PyHunter(os.getenv('HUNTER_API_KEY'))
 #sendgrid conf
 EMAIL_BACKEND = 'sgbackend.SendGridBackend'
 SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+DEFAULT_FROM_EMAIL = 'admin@socnet.com'
