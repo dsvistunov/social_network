@@ -21,7 +21,7 @@ from api.v1.soc_net import urls as api_urls
 
 urlpatterns = [
     url(r'^api/', include(api_urls)),
-	url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^refresh-token/', refresh_jwt_token),
