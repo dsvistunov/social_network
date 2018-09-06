@@ -70,7 +70,9 @@ ROOT_URLCONF = 'src.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -164,3 +166,7 @@ clearbit.key = os.getenv('CLEARBIT_API_KEY')
 
 # hunter.io conf
 hunter = PyHunter(os.getenv('HUNTER_API_KEY'))
+
+#sendgrid conf
+EMAIL_BACKEND = 'sgbackend.SendGridBackend'
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')

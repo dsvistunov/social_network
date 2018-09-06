@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic import TemplateView
 from rest_framework_jwt.views import refresh_jwt_token
 from api.v1.soc_net import urls as api_urls
 
@@ -22,6 +23,8 @@ from api.v1.soc_net import urls as api_urls
 urlpatterns = [
     url(r'^api/', include(api_urls)),
     url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/account-confirm-email/(?P<key>[-:\w]+)/$', TemplateView.as_view(template_name='registration/activation_complite.html'),
+        name='account_confirm_email'),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^refresh-token/', refresh_jwt_token),
